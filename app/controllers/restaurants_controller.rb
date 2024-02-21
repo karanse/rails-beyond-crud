@@ -1,5 +1,15 @@
 class RestaurantsController < ApplicationController
-  before_action :set_restaurant, only: %i[ show edit update destroy ]
+  before_action :set_restaurant, only: %i[show edit update destroy chef]
+  # "GET /restaurant/top"
+  def top
+    @restaurants = Restaurant.where(rating: 5)
+  end
+
+  def chef
+    # @restaurant = Restaurant.find(params[:id])
+    @chef_name = @restaurant.chef_name
+    @chef_quote = @restaurant.chef_quote
+  end
 
   # GET /restaurants
   def index
@@ -8,6 +18,8 @@ class RestaurantsController < ApplicationController
 
   # GET /restaurants/1
   def show
+    @reviews = @restaurant.reviews
+    @review = Review.new
   end
 
   # GET /restaurants/new
@@ -53,6 +65,6 @@ class RestaurantsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def restaurant_params
-      params.require(:restaurant).permit(:name, :address, :rating)
+      params.require(:restaurant).permit(:name, :address, :rating, :chef_name, :chef_quote)
     end
 end

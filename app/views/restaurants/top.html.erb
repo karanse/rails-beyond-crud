@@ -1,7 +1,5 @@
-<p style="color: green"><%= notice %></p>
-
-<h1>Restaurants</h1>
-
+<!-- app/views/restaurants/top.html.erb -->
+<h1>5 Stars Restaurants</h1>
 <div id="restaurants">
   <% @restaurants.each do |restaurant| %>
     <%= render restaurant %>
@@ -10,8 +8,3 @@
     </p>
   <% end %>
 </div>
-
-
-<%= link_to "Top restaurants", top_restaurants_path %>
-<br>
-<%= link_to "New restaurant", new_restaurant_path %>
